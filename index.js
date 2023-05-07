@@ -1,119 +1,24 @@
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const { MongoClient, ObjectID } = require('mongodb');
-
-// const app = express();
-// const port = 3000;
-// // const port = process.env.PORT || 3000;
-// // const mongoURL = 'mongodb+srv://wacim:admin@cluster0.gmnphw4.mongodb.net/test';
-// // const dbName = 'mydatabase';
-// //const collectionName = 'students';
-
-// // Set up middleware
-// app.use(bodyParser.json());
-// app.use(express.json());
-
-// // // Create a MongoDB client and connect to the database
-// // const client = new MongoClient(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });
-//  //client.connect((err) => {
-// //   if (err) {
-// //     console.error(err);
-// //     process.exit(1);
-// //   }
-// //   console.log(`Connected to MongoDB: ${mongoURL}`);
-
-// //   const db = client.db(dbName);
-// //   const collection = db.collection(collectionName);
-
-// const students=['addcc','cdvcfc','cfsdv'];
-
-//   // GET all students
-//   app.get('/students', (req, res) => {
-//     // collection.find({}).toArray((err, docs) => {
-//       if (err) {
-//         console.error(err);
-//         res.sendStatus(500);
-//       } else {
-//         res.json(docs);
-    
-//       }
-//     });
-//  // })
-//   ;
-
-//   // POST a new student
-//   app.post('/students', (req, res) => {
-//     const student = req.body;
-//     // collection.insertOne(student, (err, result) => {
-//       if (err) {
-//         console.error(err);
-//         res.sendStatus(500);
-//       } else {
-//         res.json({ id: result.insertedId });
-//       }
-//     });
-//   //})
-//   ;
-
-//   // PUT (update) an existing student
-//   app.put('/students/:id', (req, res) => {
-//     const studentId = req.params.id;
-//     const newStudent = req.body;
-//     // collection.replaceOne({ _id: ObjectID(studentId) }, newStudent, (err, result) => {
-//       if (err) {
-//         console.error(err);
-//         res.sendStatus(500);
-//       } else if (result.matchedCount === 0) {
-//         res.sendStatus(404);
-//       } else {
-//         res.json({ message: 'Student updated successfully' });
-//       }
-//     });
-//  // })
-//   ;
-
-//   // DELETE an existing student
-//   app.delete('/students/:id', (req, res) => {
-//     const studentId = req.params.id;
-//     // collection.deleteOne({ _id: ObjectID(studentId) }, (err, result) => {
-//       if (err) {
-//         console.error(err);
-//         res.sendStatus(500);
-//       } else if (result.deletedCount === 0) {
-//         res.sendStatus(404);
-//       } else {
-//         res.json({ message: 'Student deleted successfully' });
-//       }
-//     });
-//  // })
-//   ;
-
-//   // Start the server
-//   app.listen(port, () => {
-//     console.log(`Server started on port ${port}`);
-//   });
-// ;
-
-
-
-
-
-
-
-
-
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+const students=require('./routes/studentsRouter')
+const teacher=require('./routes/teacherRouter')
+const responsable=require('./routes/responsableRouter')
+
 
 const app = express();
-const port = process.env.PORT || 3000;
-const students = [{"id":1,   "students":"skander"},
-                    {"id":2,   "students":"ouassim"}
-                ];
+const PORT = process.env.PORT || 3000;
 
+// we don't need this now
+//const students = [{"id":1,   "students":"skander"},
+//                     {"id":2,   "students":"ouassim"}
+//                 ];
 
+// 200 ok
+//201 created
+//swager,,,openapi
 const reclamation_pv = [{ id: 1, name: "students.student", reclamation_etd: "moins deux "},
                         { id: 2, name: "students.student", reclamation_etd: "moins 6 "},
                         { id: 3, name: "students.student", reclamation_etd: "moins 5 "},
@@ -130,7 +35,20 @@ const deliberation = {
       { id: 4, name: "students.student4", grade: 11 }
     ]
   };
-
+const noteMatiere = [
+  {
+    id: 1,
+    etudiant: 'Alice',
+    matiere: 'Mathématiques',
+    note: 15
+  },
+  {
+    id: 2,
+    etudiant: 'Bob',
+    matiere: 'Mathématiques',
+    note:12
+  }
+]
 
 
   const studentsMark = [
@@ -154,9 +72,44 @@ const deliberation = {
     }
   ];
 
-
+  
 // Set up middleware
+app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.urlencoded({extended:false}));
+app.use(cors());
+
+// app.use("/student",students);
+//app.use("/teacher",teacher);
+ app.use("/responsable",responsable);
+
+
+//app.get("/",(req,res)=>res.send("welcom aaw"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -174,7 +127,7 @@ app.post('/students', (req, res) => {
 
 
 });
-
+        
 // PUT (update) an existing student
 app.put('/students/:id', (req, res) => {
   const studentId = parseInt(req.params.id);
@@ -197,7 +150,7 @@ app.delete('/students/:id', (req, res) => {
     res.sendStatus(404);
     
   } else {
-    students.splice(index, 1);
+    students.splice(index, 1); //t76 fl index w tnahi 1
     res.json({ message: 'Student deleted successfully' });
   }
 });
@@ -270,10 +223,12 @@ app.post('/students/:student_id/reclamationGlobale', (req, res) => {
 
 
   // POST /enseignants/{id}/notes/{matiere}
+  //post push
 app.post('/enseignants/:id/notes/:matiere', (req, res) => {
     const enseignantId = req.params.id;
     const matiere = req.params.matiere;
     const notes = req.body.notes; 
+    noteMatiere.push(notes)
     res.status(200).send('Notes enregistrées avec succès');
   });
   
@@ -297,13 +252,13 @@ app.get('/enseignants/:id/reclamations/:matiere', (req, res) => {
     const reclamations = [
       {
         id: 1,
-        etudiant: 'Alice',
+        etudiant: 'islem',
         matiere: 'Mathématiques',
         description: 'Je pense qu\'il y a une erreur dans le calcul de ma note'
       },
       {
         id: 2,
-        etudiant: 'Bob',
+        etudiant: 'souahaib',
         matiere: 'Mathématiques',
         description: 'Je n\'ai pas été évalué pour un exercice que j\'ai rendu'
       }
@@ -314,7 +269,14 @@ app.get('/enseignants/:id/reclamations/:matiere', (req, res) => {
   
 
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
-});
+// connect to db and Start the server
+
+mongoose
+    .connect('mongodb+srv://mern:admin@cluster0.glvxvm1.mongodb.net/')
+    .then(()=>{
+      console.log("connected to DB")
+        app.listen(PORT,()=>{
+            console.log(`server Running on port ${PORT}`);  
+        })
+    })
+    .catch((err)=> console.log(err))
