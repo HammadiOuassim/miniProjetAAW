@@ -9,68 +9,12 @@ const responsable=require('./routes/responsableRouter')
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-// we don't need this now
-//const students = [{"id":1,   "students":"skander"},
-//                     {"id":2,   "students":"ouassim"}
-//                 ];
 
 // 200 ok
 //201 created
 //swager,,,openapi
-const reclamation_pv = [{ id: 1, name: "students.student", reclamation_etd: "moins deux "},
-                        { id: 2, name: "students.student", reclamation_etd: "moins 6 "},
-                        { id: 3, name: "students.student", reclamation_etd: "moins 5 "},
-                    ]  ;  
-
-const reclamation_matiere =[{id:students.id,complaint:""}]
-
-const deliberation = {
-    id: 1,
-    students: [
-      { id: 1, name: "students.student1", grade: 15 },
-      { id: 2, name: "students.student2", grade: 13 },
-      { id: 3, name: "students.student3", grade: 10 },
-      { id: 4, name: "students.student4", grade: 11 }
-    ]
-  };
-const noteMatiere = [
-  {
-    id: 1,
-    etudiant: 'Alice',
-    matiere: 'Mathématiques',
-    note: 15
-  },
-  {
-    id: 2,
-    etudiant: 'Bob',
-    matiere: 'Mathématiques',
-    note:12
-  }
-]
-
-
-  const studentsMark = [
-    {
-      id: 1,
-      name: 'John',
-      marks: {
-        math: 18 ,
-        science: 19 ,
-        english: 17 
-      }
-    },
-    {
-      id: 2,
-      name: 'Jane',
-      marks: {
-        math: 15,
-        science: 12,
-        english:  8
-      }
-    }
-  ];
 
   
 // Set up middleware
@@ -84,7 +28,6 @@ app.use(cors());
  app.use("/responsable",responsable);
 
 
-//app.get("/",(req,res)=>res.send("welcom aaw"))
 
 
 
@@ -113,10 +56,8 @@ app.use(cors());
 
 
 
-// GET all students
-app.get('/students', (req, res) => {
-  res.json(students);
-});
+
+
 
 // POST a new student
 app.post('/students', (req, res) => {
@@ -141,19 +82,6 @@ app.put('/students/:id', (req, res) => {
   }
 });
 
-// DELETE an existing student
-app.delete('/students/:id', (req, res) => {
-  const studentId = parseInt(req.params.id);
-  const index = students.findIndex((student) => student.id === studentId);
-  if (index === -1) {
-    
-    res.sendStatus(404);
-    
-  } else {
-    students.splice(index, 1); //t76 fl index w tnahi 1
-    res.json({ message: 'Student deleted successfully' });
-  }
-});
 
 
 // GET reclamation
@@ -267,6 +195,16 @@ app.get('/enseignants/:id/reclamations/:matiere', (req, res) => {
     res.status(200).send(reclamations);
   });
   
+
+
+
+
+
+
+
+
+
+
 
 
 // connect to db and Start the server
