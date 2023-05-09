@@ -22,11 +22,11 @@ const responsableSchema = mongoose.Schema({
     reclamationGlobale:[
         {
             studentID:{
-                type:stringify,
+                type:String,
                 required:true,
             },
             description:{
-                type:stringify,
+                type:String,
                 required:[true,"ajouter votre reclamation. "]
             }
         }
@@ -35,7 +35,7 @@ const responsableSchema = mongoose.Schema({
     student:[
         {
             studentID:{
-                type:string,
+                type:String,
                 required:true,
             },
             studentFirstName:{

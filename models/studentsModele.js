@@ -17,17 +17,17 @@ const studentsSchema = mongoose.Schema({
         required:[true,"please add a Last name"]
     },
     password:{
-        type:stringify,
+        type:String,
         required:[true,"add password"]
     },
     notes:[
         {
             matiere:{
-                type:string,
+                type:String,
                 required:true
             },
             note:{
-                type:number,
+                type:Number,
                 required:false
             },
 
@@ -37,18 +37,18 @@ const studentsSchema = mongoose.Schema({
     reclamation:[
         {
             matiere:{
-                type:string,
+                type:String,
                 required:false,
             },
             description:{
-                type:string,
+                type:String,
                 required:false
             }
 
         },
     ],
     reclamationGlobale:{
-        type:string,
+        type:String,
         required:false,
     }
 })

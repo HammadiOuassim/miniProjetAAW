@@ -22,7 +22,7 @@ const deliberationSchema = mongoose.Schema({
         }
     ]
 },
-   ]
+   ],
 }
 })
 

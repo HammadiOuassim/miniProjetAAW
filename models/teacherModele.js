@@ -22,11 +22,11 @@ const teacherSchema = mongoose.Schema({
     notes:[
         {
             studentID:{
-                type:string,
+                type:String,
                 required:true
             },
             note:{
-                type:number,
+                type:Number,
                 required:false
             },
 
@@ -36,11 +36,11 @@ const teacherSchema = mongoose.Schema({
     reclamation:[
         {
             studentID:{
-                type:string,
+                type:String,
                 required:true
             },
             description:{
-                type:number,
+                type:Number,
                 required:true
             },
 

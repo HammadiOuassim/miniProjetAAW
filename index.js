@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cors());
 
-// app.use("/student",students);
+ app.use("/student",students);
 //app.use("/teacher",teacher);
  app.use("/responsable",responsable);
 

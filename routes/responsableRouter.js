@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const {addStudent,AllStudents,deleteStudent,editStudent} =require("../controllers/responsableControllers")
-const studentsControllers = require('../controllers/studentsControllers');
+// we dont need this const studentsControllers = require('../controllers/studentsControllers');
 const students = require("../models/studentsModele");
 
 
