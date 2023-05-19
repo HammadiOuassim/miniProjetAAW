@@ -1,29 +1,26 @@
 const mongoose= require('mongoose')
 
-const deliberationSchema = mongoose.Schema({
-   anneeDeliberation:{
-    type:Date,
-    required:true,
-   } ,
-   
-   Deliberation:{[{
-    student:[
-        // est ce que tji tableau fi tableau wela ne7i tab deliberation w ndirha bl find?
-
+const subjectSchema = mongoose.Schema({
+    subject:[
         {
-            matiere:{
+            // subjectID:{
+            //     type:String,
+            //     required:false,
+            // },
+            subjectName:{
                 type:String,
-                required:true
+                required:false,
             },
-            note:{
+            subjectCode:{
+                type:String,
+                required:false,
+            },
+            subjectCoff:{
                 type:Number,
-                required:true,
+                required:false,
             }
         }
     ]
-},
-   ],
-}
 })
 
 const deliberation = mongoose.model("deliberation",deliberationSchema)

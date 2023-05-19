@@ -11,7 +11,7 @@ const responsable=require('./routes/responsableRouter')
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-
+//uri 
 // 200 ok
 //201 created
 //swager,,,openapi
@@ -27,7 +27,9 @@ app.use(cors());
 //app.use("/teacher",teacher);
  app.use("/responsable",responsable);
 
-
+ app.get("/",(req,res)=>{
+  res.send("Home Page")
+  });
 
 
 

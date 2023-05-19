@@ -16,9 +16,10 @@ const AllStudents = async(req,res)=>{
 // ADD student..
 
 const addStudent= async (req,res)=>{
-    const{student_id,firstName,lastName}=req.body;
+    const{student_id,firstName,lastName,password,notes,reclamation,reclamationGlobale}=req.body;
 
-    const newStudent= await students.create({student_id,firstName,lastName})
+    
+    const newStudent= await students.create({student_id,firstName,lastName,password,notes,reclamation,reclamationGlobale})
     res.json(newStudent);
 };
 
@@ -54,12 +55,23 @@ const editStudent =async(req,res)=>{
 }
 
 
+
+//consult reclamation global
+const getReclamationG = async(req,res)=>{
+  const reclamationsG = await students.findById(req.params.id);
+  
+  res.json({ reclamationsG : reclamationsG.reclamationGlobale , firstName : reclamationsG.firstName , lastName : reclamationsG.lastName,student_id:reclamationsG.student_id});
+  // how to get all reclamation , is it another table !!!!!!!!!!!!!!!
+}
+
+
 module.exports={
     addStudent,
     AllStudents,
     //getStudentById,
     deleteStudent,
-    editStudent
+    editStudent,
+    getReclamationG
     
 
 }

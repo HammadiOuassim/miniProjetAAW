@@ -18,13 +18,13 @@ const studentsSchema = mongoose.Schema({
     },
     password:{
         type:String,
-        required:[true,"add password"]
+        required:[true,"add password"],
     },
     notes:[
         {
             matiere:{
                 type:String,
-                required:true
+                required:false
             },
             note:{
                 type:Number,

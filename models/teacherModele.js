@@ -35,15 +35,9 @@ const teacherSchema = mongoose.Schema({
     ],
     reclamation:[
         {
-            studentID:{
-                type:String,
-                required:true
-            },
-            description:{
-                type:Number,
-                required:true
-            },
-
+            studentID:{type:mongoose.Schema.Types.ObjectId,ref :'students'},
+            description:{type:mongoose.Schema.Types.ObjectId,ref :'description'},
+// ref de student and desc
 
         }
     ],
