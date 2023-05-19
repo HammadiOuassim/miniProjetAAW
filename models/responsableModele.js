@@ -19,6 +19,15 @@ const responsableSchema = mongoose.Schema({
         type:String,
         required:[true,"please add a password"]
     },
+    email:{
+        type:stringify,
+        required:[true,"please add your email"]
+    },
+
+
+
+
+    
     reclamationGlobale:[
         {
             studentID:{

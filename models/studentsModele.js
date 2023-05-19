@@ -20,6 +20,10 @@ const studentsSchema = mongoose.Schema({
         type:String,
         required:[true,"add password"],
     },
+    email:{
+        type:stringify,
+        required:[true,"please add your email"]
+    },
     notes:[
         {
             matiere:{

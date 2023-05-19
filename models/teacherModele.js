@@ -19,6 +19,10 @@ const teacherSchema = mongoose.Schema({
         type:String,
         required:[true,"please add a password"]
     },
+    email:{
+        type:stringify,
+        required:[true,"please add your email"]
+    },
     notes:[
         {
             studentID:{
@@ -33,14 +37,16 @@ const teacherSchema = mongoose.Schema({
 
         }
     ],
-    reclamation:[
-        {
-            studentID:{type:mongoose.Schema.Types.ObjectId,ref :'students'},
-            description:{type:mongoose.Schema.Types.ObjectId,ref :'description'},
-// ref de student and desc
+//     reclamation:[
+//         {
+//             studentID:{type:mongoose.Schema.Types.ObjectId,ref :'students'},
+//             description:{type:mongoose.Schema.Types.ObjectId,ref :'description'},
 
-        }
-    ],
+
+// // ref de student and desc
+
+//         }
+//     ],
 
 })
 
