@@ -19,6 +19,13 @@ const reclamationSubject= async(req,res)=>{
     res.status(201).json({ newReclamation ,message: 'Complaint filed successfully' });
 }
 
+
+
 module.exports={
     reclamationSubject,
 }
+
+
+// 1. L’étudiant : il peut consulter ses notes par matière,
+// comme il peut consulter le PV de délibération global.
+// Il peut aussi déposer online une réclamation (Par matière ou concernant le  PV final). 
