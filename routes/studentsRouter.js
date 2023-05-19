@@ -6,11 +6,10 @@ const router = express.Router();
 const {reclamationSubject,getNotes,getDeliberation,reclamationGlobale}=require('../controllers/studentsControllers')
 
 //post subject reclamation
-router.post("/reclamationSubject/:id",reclamationSubject)
-
+router.post("/notes/reclamationSubject",reclamationSubject)
 router.get("/notes/:id",getNotes)
-router.get("/deliberetion",getDeliberation)
-router.post("/deliberation/reclamation",reclamationGlobale)
+router.get("/deliberation",getDeliberation)
+router.post("/deliberation/reclamation/:id",reclamationGlobale)
 module.exports=router;
 
 

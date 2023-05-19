@@ -26,3 +26,7 @@ router.get("/student/:id/reclamation",getReclamationG)
 
 
 module.exports=router;
+
+
+
+// ychouf deliberation 

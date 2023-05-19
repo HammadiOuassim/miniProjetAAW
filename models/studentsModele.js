@@ -53,5 +53,18 @@ const studentsSchema = mongoose.Schema({
     }
 })
 
+studentsSchema.methods.reclamationSubject = async function(matiere, description) {
+    try {
+      this.reclamation.push({ matiere, description });
+      await this.save();
+    } catch (error) {
+      console.error('Error posting reclamation:', error);
+      throw error;
+    }
+  };
+
+
+
+
 const students = mongoose.model("students",studentsSchema)
 module.exports = students
