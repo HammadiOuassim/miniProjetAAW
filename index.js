@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 // 200 ok
 //201 created
 //swager,,,openapi
-
+// resp y ajouter teacher !!!!!!!!!!!!!!!!!!!!1111
   
 // Set up middleware
 app.use(express.json());
@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(cors());
 
  app.use("/student",students);
-//app.use("/teacher",teacher);
+ app.use("/teacher",teacher);
  app.use("/responsable",responsable);
 
  app.get("/",(req,res)=>{
