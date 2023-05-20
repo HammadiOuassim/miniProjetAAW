@@ -15,19 +15,30 @@ const teacherSchema = mongoose.Schema({
         type:String,
         required:[true,"please add a name"]
     },
-    passwordr:{
+    password:{
         type:String,
         required:[true,"please add a password"]
     },
     email:{
-        type:stringify,
+        type:String,
         required:[true,"please add your email"]
     },
+    matiere:{
+        type:String,
+        required:false,
+    },
+
+
+
+
+
+
+
     notes:[
         {
             studentID:{
                 type:String,
-                required:true
+                required:false
             },
             note:{
                 type:Number,

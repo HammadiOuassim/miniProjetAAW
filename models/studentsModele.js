@@ -21,13 +21,21 @@ const studentsSchema = mongoose.Schema({
         required:[true,"add password"],
     },
     email:{
-        type:stringify,
+        type:String,
         required:[true,"please add your email"]
     },
     notes:[
         {
+
+
+            teacher: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'teacher',
+                required: false
+              },
             matiere:{
                 type:String,
+               
                 required:false
             },
             note:{

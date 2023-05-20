@@ -25,7 +25,7 @@ app.use(cors());
 
  app.use("/student",students);
  app.use("/teacher",teacher);
- app.use("/responsable",responsable);
+ app.use("/responsable",responsable); 
 
  app.get("/",(req,res)=>{
   res.send("Home Page")
