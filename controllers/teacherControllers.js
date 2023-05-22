@@ -1,7 +1,7 @@
 const students = require('../models/studentsModele');
 const teacher = require('../models/teacherModele');
 
-
+const mongoose = require('mongoose');
 
 const postNoteToStudent = async (req, res) => {
   try {
@@ -14,7 +14,8 @@ const postNoteToStudent = async (req, res) => {
 
     //const subject = teacher.matiere;
 
-    const Fteacher = await teacher.findOne({ teacher_id: teacherId });
+    const Fteacher = await teacher.findById({ _id: new  mongoose.Types.ObjectId(teacherId) }); // error is here !!!!!!!!!!!!!!!!!!!1
+    //res.json({message:'techer',Fteacher}); i got null here 
     if (!Fteacher) {
       return res.status(404).json({ error: 'Teacher not found' });
     }
